@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* ─── Core Palette (Chaiko Rebrand) ─── */
+  --color-espresso: #1A1614; /* Deepened base */
+  --color-forest: #2A2421;
+  --color-parchment: #F2E8DF; /* Warmer clay light */
+  --color-gold: #D98E5F;      /* Terracotta / Chai Saffron */
+  --color-bark: #4D3427;
+  --color-sage: #8C7E6A;
+  --color-smoke: #12100F;
+
+  /* ─── Warm Tones ─── */
+  --color-cream: #FDF9F6;
+  --color-warm-stone: #DBCDBF;
+  --color-latte: #BEA691;
+  --color-mocha: #8B6E58;
+
+  /* ─── Dark-Mode Palette ─── */
+  --color-charcoal: #141211;
+  --color-zinc-deep: #1F1C1B;
+  --color-zinc-mid: #332E2C;
+  --color-amber-accent: #C97340; /* Stronger Terracotta */
+  --color-amber-glow: #D98E5F30;
+
+  /* ─── Opacity Variants ─── */
+  --color-parchment-80: rgba(242, 232, 223, 0.8);
+  --color-parchment-60: rgba(242, 232, 223, 0.6);
+  --color-parchment-40: rgba(242, 232, 223, 0.4);
+  --color-parchment-20: rgba(242, 232, 223, 0.2);
+  --color-parchment-10: rgba(242, 232, 223, 0.1);
+  --color-parchment-05: rgba(242, 232, 223, 0.05);
+  --color-espresso-90: rgba(26, 22, 20, 0.9);
+  --color-espresso-80: rgba(26, 22, 20, 0.8);
+  --color-espresso-60: rgba(26, 22, 20, 0.6);
+  --color-gold-30: rgba(217, 142, 95, 0.3);
+  --color-gold-20: rgba(217, 142, 95, 0.2);
+  --color-gold-10: rgba(217, 142, 95, 0.1);
+  --color-forest-80: rgba(42, 36, 33, 0.8);
+  --color-cream-80: rgba(253, 249, 246, 0.8);
+  --color-cream-60: rgba(253, 249, 246, 0.6);
+
+  /* ─── Typography ─── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+/* ─── Base ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-espresso);
+  color: var(--color-parchment);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--color-charcoal);
+  }
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-espresso);
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-smoke);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-bark);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* ─── Steam Animation ─── */
+@keyframes steam {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) scaleX(1);
+  }
+  25% {
+    opacity: 0.6;
+    transform: translateY(-12px) scaleX(1.1);
+  }
+  75% {
+    opacity: 0.3;
+    transform: translateY(-28px) scaleX(0.9) rotate(3deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-44px) scaleX(0.7) rotate(-2deg);
+  }
+}
+
+.steam-line {
+  animation: steam 2s ease-in infinite;
+}
+
+.steam-line:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.steam-line:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+/* ─── Float Animation ─── */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ─── Shimmer Animation ─── */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ─── Gentle Pulse ─── */
+@keyframes gentle-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-gentle-pulse {
+  animation: gentle-pulse 3s ease-in-out infinite;
+}
+
+/* ─── Tab Slide ─── */
+@keyframes tab-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tab-slide {
+  animation: tab-slide-in 0.4s ease-out;
+}
+
+/* ─── Particle Drift ─── */
+@keyframes particle-drift {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-8px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(4px) rotate(-3deg);
+  }
+}
+
+/* ─── Pulse Dot ─── */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+/* ─── Gold Divider Grow ─── */
+@keyframes divider-grow {
+  from {
+    width: 0%;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.animate-divider-grow {
+  animation: divider-grow 1.5s ease-out forwards;
+}
+
+/* ─── Noise Texture ─── */
+.noise-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ─── Frosted Glass Utility ─── */
+.glass-card {
+  background: rgba(249, 244, 238, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(249, 244, 238, 0.1);
+}
+
+.glass-card-hover:hover {
+  background: rgba(249, 244, 238, 0.1);
+  border-color: rgba(201, 169, 110, 0.25);
+  box-shadow: 0 8px 32px rgba(201, 169, 110, 0.08);
+}
+
+/* ─── Menu Tab Pill Styles ─── */
+.menu-tab {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-tab:hover:not(.menu-tab-active) {
+  background: rgba(249, 244, 238, 0.08);
+}
+
+.menu-tab-active {
+  background: var(--color-gold);
+  color: var(--color-espresso);
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+}
+
+/* ─── Smooth Card Elevation ─── */
+.card-elevate {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-elevate:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* 📱 Hide scrollbar for native mobile swiping */
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

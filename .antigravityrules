@@ -1,0 +1,42 @@
+# Project Rules — Beanstalk Coffee v3
+
+## Stack
+- **Framework**: Next.js 16 (App Router, `src/` directory)
+- **Styling**: Tailwind CSS v4 (via `@tailwindcss/postcss`)
+- **Animation**: `@react-three/fiber` for 3D rendering, `@react-three/drei` for helpers, `framer-motion-3d` for scroll mapping.
+- **State**: Zustand — BusyMeter widget state
+
+## Code Standards
+- Components < 150 lines. Modular, focused, reusable.
+- Semantic HTML (`<section>`, `<header>`, `<footer>`) for the UI layer positioned over the Canvas.
+- All 3D rendering MUST happen within the `<Canvas>` component. Do not use DOM elements for the cup or particles.
+- `CoffeeCup3D.tsx` should use procedural Three.js `<cylinderGeometry>` to construct a cup model.
+- CSS `backdrop-blur` should be used heavily to ensure the 3D layer is visible underneath content.
+
+## File Structure
+```
+src/
+  app/
+    layout.tsx       — Root layout, Google Fonts, metadata
+    page.tsx         — Assembles all sections. Canvas sits behind the HTML wrapper.
+    globals.css      — Tailwind + premium theme tokens
+  components/
+    Scene3D.tsx      — The React Three Fiber <Canvas> environment
+    CoffeeCup3D.tsx  — The procedural 3D model with scroll-linked translation/rotation
+    CoffeeParticles3D.tsx — 3D floating geometries scattered near the path
+    Hero.tsx         — HTML Typographic hero + BusyMeter widget
+    BusyMeter.tsx    — Zustand-powered real-time capacity indicator
+    TheVibe.tsx      — About section with glassmorphism overlays
+    Menu.tsx         — 100% veg menu CSS grid + 3D tilt + steam animation
+    SocialProof.tsx  — Rating badge (4.5★) + testimonial cards
+    Footer.tsx       — Dark footer, address, hours
+    QuickOrderFAB.tsx — localStorage-aware floating order button
+  store/
+    vibesStore.ts    — Zustand store for busy meter state
+```
+
+## Forbidden
+- No `any` types
+- No inline `style` that duplicates a Tailwind class
+- No video elements in the hero
+- No placeholder/stock images
